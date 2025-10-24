@@ -1,12 +1,4 @@
-<p align="right">
-  <a href="https://amplication.com" target="_blank">
-    <img alt="amplication-logo" height="70" alt="Amplication Logo" src="https://amplication.com/images/logo.svg"/>
-  </a>
-</p>
-
 # Introduction
-
-This service was generated with Amplication. The server-side of the generated project. This component provides the different backend services - i.e., REST API, GraphQL API, authentication, authorization, logging, data validation and the connection to the database. Additional information about the server component and the architecture around it, can be found on the [documentation](https://docs.amplication.com/guides/getting-started) site.
 
 # Getting started
 
@@ -26,9 +18,6 @@ Configuration for the server component can be provided through the use of enviro
 | DB_NAME              | the name of the database                     | [service-name] / [project-name]                                     |
 | JWT_SECRET_KEY       | the secret used to sign the json-web token   | [secret]                                                            |
 | JWT_EXPIRATION       | the expiration time for the json-web token   | 2d                                                                  |
-
-> **Note**
-> Amplication generates default values and stores them under the .env file. It is advised to use some form of secrets manager/vault solution when using in production. 
 
 ## Step 2.1: Scripts - pre-requisites
 

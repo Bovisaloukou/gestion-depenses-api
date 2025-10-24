@@ -27,7 +27,7 @@ RUN npm run build
 FROM node:18.13.0-slim AS production
 
 # create arguments of builds time variables
-ARG user=amplication
+ARG user=node
 ARG group=${user}
 ARG uid=1001
 ARG gid=$uid

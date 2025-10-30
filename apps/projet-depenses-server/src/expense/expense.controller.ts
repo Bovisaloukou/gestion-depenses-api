@@ -17,6 +17,8 @@ import { AclFilterResponseInterceptor } from "../interceptors/aclFilterResponse.
 import { AclValidateRequestInterceptor } from "../interceptors/aclValidateRequest.interceptor";
 import { isRecordNotFoundError } from "../prisma.util";
 import { ApiNestedQuery } from "../decorators/api-nested-query.decorator";
+import { ExpenseStatsDTO } from "./base/ExpenseStatsDTO";
+import { ExpenseStatsResponseDto } from "./base/ExpenseStatsResponse.dto";
 
 @swagger.ApiTags("expenses")
 @common.Controller("expenses")
@@ -27,6 +29,33 @@ export class ExpenseController extends ExpenseControllerBase {
     protected readonly rolesBuilder: nestAccessControl.RolesBuilder
   ) {
     super(service, rolesBuilder);
+  }
+
+  @common.Get("stats")
+  @swagger.ApiOkResponse({ type: ExpenseStatsResponseDto })
+  @swagger.ApiQuery({
+    name: "startDate",
+    type: Date,
+    required: true,
+  })
+  @swagger.ApiQuery({
+    name: "endDate",
+    type: Date,
+    required: true,
+  })
+  @swagger.ApiQuery({
+    name: "categoryIds",
+    type: [String],
+    required: false,
+    isArray: true,
+  })
+  @swagger.ApiForbiddenResponse({
+    type: errors.ForbiddenException,
+  })
+  async getExpenseStatistics(
+    @common.Query() query: ExpenseStatsDTO
+  ): Promise<ExpenseStatsResponseDto> {
+    return this.service.getExpenseStatistics(query);
   }
 
   @common.UseInterceptors(AclValidateRequestInterceptor)
